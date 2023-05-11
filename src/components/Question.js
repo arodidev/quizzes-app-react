@@ -20,7 +20,9 @@ export default function Question(props) {
     const correctAnswer = props.correctAnswer
     incorrectAnswers.push(correctAnswer)
 
-    const answerSet = new Set(incorrectAnswers)
+    const shuffledAnswers = shuffleArray(incorrectAnswers)
+
+    const answerSet = new Set(shuffledAnswers)
     incorrectAnswers = [...answerSet]
 
     const choices = incorrectAnswers
@@ -28,15 +30,15 @@ export default function Question(props) {
 // TBC, set other options to fade away while correct answer fades in and enlarges.
     const log = choices.map((choice, index) => (
         choice === correctAnswer ?
-            <div key={index} className={answerState ? "correctAnswer" : "incorrectAnswer"}>
+            <div key={index} className={answerState ? "correctAnswer answer" : "incorrectAnswer answer"}>
                 <h3>
-                    {`>: ${choice}`}
+                    {`> ${choice}`}
                 </h3>
             </div>
             :
             <div key={index} className="incorrectAnswer">
                 <h3>
-                    {`>: ${choice}`}
+                    {`> ${choice}`}
                 </h3>
             </div>
     ))
