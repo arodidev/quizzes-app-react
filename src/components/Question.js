@@ -3,56 +3,60 @@ import React from "react";
 export default function Question(props) {
 
     const [answerState, setAnswerState] = React.useState(false)
-
-    function shuffleArray(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
-        return array;
-    }
+    const [begin, setBegin] = React.useState([])
 
     function showAnswer() {
         setAnswerState(true)
+        setBegin(myChoices)
     }
-    
-    let incorrectAnswers = props.incorrectAnswers
+
+    let myChoices = props.incorrectAnswers
     const correctAnswer = props.correctAnswer
-    incorrectAnswers.push(correctAnswer)
 
-    const shuffledAnswers = shuffleArray(incorrectAnswers)
+    const randomNumber = Math.floor(Math.random() * 4)
 
-    const answerSet = new Set(shuffledAnswers)
-    incorrectAnswers = [...answerSet]
+    myChoices.splice(randomNumber, 0, correctAnswer)
 
-    const choices = incorrectAnswers
+    const answerSet = new Set(myChoices)
+    myChoices = [...answerSet]
 
-// TBC, set other options to fade away while correct answer fades in and enlarges.
+    const choices = begin.length === 0 ? myChoices : begin
+
+
     const log = choices.map((choice, index) => (
         choice === correctAnswer ?
             <div key={index} className={answerState ? "correctAnswer answer" : "incorrectAnswer answer"}>
-                <h3>
-                    {`> ${choice}`}
-                </h3>
+                <ul>
+                    <li>
+                        <h3>
+                            {`${choice}`}
+                        </h3>
+                    </li>
+                </ul>
             </div>
             :
             <div key={index} className="incorrectAnswer">
-                <h3>
-                    {`> ${choice}`}
-                </h3>
+                <ul>
+                    <li>
+                        <h3>
+                            {`${choice}`}
+                        </h3>
+                    </li>
+                </ul>
             </div>
     ))
 
+
     return (
         <div className="question">
-            <h5>{`Category: ${props.category}`}</h5>
+            {/* <h5>{`Category: ${props.category}`}</h5> */}
             <h2>{`Question: ${props.question.text}`}</h2>
             {log}
+            {/* {answerState&& <h2>{correctAnswer}</h2>} */}
             <button
                 onClick={showAnswer}
             >Show answer</button>
 
         </div>
-
     )
 }
