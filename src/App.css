@@ -12,6 +12,7 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
 body {
     /* margin: 0;
     margin-bottom: 10px;
@@ -30,41 +31,45 @@ body {
     margin-left: 10px;
   }
   .show-answer-button {
-    margin-bottom: 5px;
-    padding: 12px 20px;
-    background-color: #0060c7; /* Replace with your desired background color */
-    color: #fff; /* Replace with your desired text color */
-    font-size: 16px; /* Replace with your desired font size */
+    margin-left: 25px;
+    display: inline-block;
+    background-color: rgb(215, 215, 215);
+    color: #333;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    padding: 10px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out; /* Add transition effect for smooth hover effect */
-  }
-  
-  .show-answer-button:hover {
-    background-color: #003c7d; /* Replace with your desired background color on hover */
-  }
-  
-  .show-answer-button:focus {
-    outline: none; /* Optionally remove outline on focus */
-  }
-  .answer-output {
-    display: block; /* Ensure the span is a block-level element */
-    border: 1px solid #ccc; /* Add a border for visual styling */
-    padding: 10px; /* Add some padding for spacing */
-    background-color: #f8f8f8; /* Add a background color for contrast */
-  }
-  
-  .answer-output h5 {
-    margin: 0; /* Remove margin for the h5 heading */
-    font-size: 18px; /* Customize the font size to your preference */
-    color: #333; /* Customize the text color to your preference */
-    font-weight: bold; /* Customize the font weight to your preference */
-  }
-  .question{
-    border-bottom: 1px dotted black;
+    transition: background-color 0.3s ease;
   }
 
-  .correctAnswer{
-    color: rgb(0, 221, 55);
+.show-answer-button:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+/* Animation Styles */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
   }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.show-answer-button.animate {
+  animation: pulse 1s infinite;
+}
+  
+.question{
+  border-bottom: 1px dotted black;
+}
+
+.correctAnswer{
+  color: rgb(0, 221, 55);
+}

@@ -54,6 +54,7 @@ export default function Question(props) {
             {log}
             {/* {answerState&& <h2>{correctAnswer}</h2>} */}
             <button
+                className="show-answer-button"
                 onClick={showAnswer}
             >Show answer</button>
 
